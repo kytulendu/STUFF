@@ -1,0 +1,151 @@
+# Thai Display Font makefile.
+
+!ifndef assembler
+!   define assembler wasm
+!endif
+
+!ifndef c_compiler
+#!   define c_compiler wcc386
+!   define c_compiler wcc
+!endif
+
+!ifndef linker
+!   define linker wlink
+!endif
+
+!ifndef asm_options
+!   define asm_options -zq -d1
+!endif
+
+!ifndef c_options
+!   define c_options -zq -d1
+!endif
+
+.extensions:
+.extensions: .com .exe .lnk .obj .c .asm
+
+.asm.obj: .AUTODEPEND
+    $(assembler) $(asm_options) $[*
+
+.c.obj: .AUTODEPEND
+    $(c_compiler) $(c_options) $[*
+
+##############################################################################
+# bin2inc.exe
+##############################################################################
+
+bin2inc: .SYMBOLIC bin2inc.exe
+
+bin2inc_objs = bin2inc.obj
+
+bin2inc.exe: $(bin2inc_objs) bin2inc.lnk
+    $(linker) @bin2inc.lnk
+
+bin2inc.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    bin2inc
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    $(bin2inc_objs)
+    #@for %i in ($(bin2inc_objs)) do @%append $@ FILE    %i
+
+##############################################################################
+# rorg.com
+##############################################################################
+
+rorg: .SYMBOLIC rorg.com
+
+rorg.com: rorg.obj rorg.lnk
+    $(linker) @rorg.lnk
+
+rorg.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    rorg
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    rorg.obj
+
+##############################################################################
+# lyvga.com
+##############################################################################
+
+lyvga: .SYMBOLIC lyvga.com
+
+lyvga.com: bin2inc.exe lyvga.obj lyvga.lnk
+#    bin2inc 14 rega.fon rega.inc
+    $(linker) @lyvga.lnk
+
+lyvga.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    lyvga
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    lyvga.obj
+
+##############################################################################
+# rega.com
+##############################################################################
+
+rega: .SYMBOLIC rega.com
+
+rega.com: bin2inc.exe rega.obj rega.lnk
+    bin2inc 14 rega.fon rega.inc
+    $(linker) @rega.lnk
+
+rega.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    rega
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    rega.obj
+
+##############################################################################
+# rvga.com
+##############################################################################
+
+rvga: .SYMBOLIC rvga.com
+
+rvga.com: bin2inc.exe rvga.obj rvga.lnk
+    bin2inc 16 rvga.fon rvga.inc
+    $(linker) @rvga.lnk
+
+rvga.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    rvga
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    rvga.obj
+
+##############################################################################
+# thaicour.com
+##############################################################################
+
+thaicour: .SYMBOLIC thaicour.com
+
+thaicour.com: bin2inc.exe thaicour.obj thaicour.lnk
+    bin2inc 16 thaicour.fon thaicour.inc
+    $(linker) @thaicour.lnk
+
+thaicour.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    thaicour
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    thaicour.obj
+
+##############################################################################
+
+all: bin2inc rorg lyvga rega rvga thaicour
+
+clean: .SYMBOLIC
+    @if exist *.com del *.com
+    @if exist *.exe del *.exe
+    @if exist *.lnk del *.lnk
+    @if exist *.obj del *.obj
+    @if exist *.map del *.map
+    @if exist *.err del *.err
