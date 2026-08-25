@@ -72,8 +72,7 @@ rorg.lnk: $(__MAKEFILES__)
 
 lyvga: .SYMBOLIC lyvga.com
 
-lyvga.com: bin2inc.exe lyvga.obj lyvga.lnk
-#    bin2inc 14 rega.fon rega.inc
+lyvga.com: lyvga.obj lyvga.lnk
     $(linker) @lyvga.lnk
 
 lyvga.lnk: $(__MAKEFILES__)
@@ -91,7 +90,7 @@ lyvga.lnk: $(__MAKEFILES__)
 rega: .SYMBOLIC rega.com
 
 rega.com: bin2inc.exe rega.obj rega.lnk
-    bin2inc 14 rega.fon rega.inc
+#    bin2inc 14 rega.fon rega.inc
     $(linker) @rega.lnk
 
 rega.lnk: $(__MAKEFILES__)
@@ -109,7 +108,7 @@ rega.lnk: $(__MAKEFILES__)
 rvga: .SYMBOLIC rvga.com
 
 rvga.com: bin2inc.exe rvga.obj rvga.lnk
-    bin2inc 16 rvga.fon rvga.inc
+#    bin2inc 16 rvga.fon rvga.inc
     $(linker) @rvga.lnk
 
 rvga.lnk: $(__MAKEFILES__)
@@ -127,7 +126,7 @@ rvga.lnk: $(__MAKEFILES__)
 thaicour: .SYMBOLIC thaicour.com
 
 thaicour.com: bin2inc.exe thaicour.obj thaicour.lnk
-    bin2inc 16 thaicour.fon thaicour.inc
+#    bin2inc 16 thaicour.fon thaicour.inc
     $(linker) @thaicour.lnk
 
 thaicour.lnk: $(__MAKEFILES__)
