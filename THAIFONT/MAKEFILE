@@ -50,6 +50,25 @@ bin2inc.lnk: $(__MAKEFILES__)
     #@for %i in ($(bin2inc_objs)) do @%append $@ FILE    %i
 
 ##############################################################################
+# bin2inc2.exe
+##############################################################################
+
+bin2inc2: .SYMBOLIC bin2inc2.exe
+
+bin2inc2_objs = bin2inc2.obj
+
+bin2inc2.exe: $(bin2inc2_objs) bin2inc2.lnk
+    $(linker) @bin2inc2.lnk
+
+bin2inc2.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    bin2inc2
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    $(bin2inc2_objs)
+    #@for %i in ($(bin2inc2_objs)) do @%append $@ FILE    %i
+
+##############################################################################
 # rorg.com
 ##############################################################################
 
