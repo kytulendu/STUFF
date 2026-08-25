@@ -188,7 +188,7 @@ thaicour.lnk: $(__MAKEFILES__)
 
 ##############################################################################
 
-all: bin2inc rorg lyvga rega rvga thaicour
+all: bin2inc rorg lyvga qx10 rega rvga thaicour
 
 clean: .SYMBOLIC
     @if exist *.com del *.com
@@ -197,3 +197,4 @@ clean: .SYMBOLIC
     @if exist *.obj del *.obj
     @if exist *.map del *.map
     @if exist *.err del *.err
+    @if exist *.sym del *.sym
