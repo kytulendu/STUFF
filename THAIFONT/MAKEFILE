@@ -103,6 +103,26 @@ lyvga.lnk: $(__MAKEFILES__)
     @%append $@ FILE    lyvga.obj
 
 ##############################################################################
+# qx10.com
+##############################################################################
+
+qx10: .SYMBOLIC qx10.com
+
+qx10.inc: bin2inc2.exe
+    bin2inc2 16 qx10.bin qx10.inc
+
+qx10.com: qx10.inc qx10.obj qx10.lnk
+    $(linker) @qx10.lnk
+
+qx10.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    qx10
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    qx10.obj
+
+##############################################################################
 # rega.com
 ##############################################################################
 
