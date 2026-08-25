@@ -9,11 +9,10 @@
 //
 // Modified for output assembly data by Khralkatorrix.
 //
-// syntax:  bin2inc <input_file> <output_file>
+// syntax:  bin2inc <character height> <input_file> <output_file>
 //
 // examples:
-//     bin2c font.fon font.inc
-//     bin2c sometext.txt sometext_txt.inc
+//     bin2inc 16 font.fon font.inc
 
 #include <ctype.h>
 #include <stdio.h>
