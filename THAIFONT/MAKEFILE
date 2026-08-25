@@ -128,8 +128,10 @@ qx10.lnk: $(__MAKEFILES__)
 
 rega: .SYMBOLIC rega.com
 
-rega.com: bin2inc.exe rega.obj rega.lnk
-#    bin2inc 14 rega.fon rega.inc
+rega.inc: bin2inc2.exe
+    bin2inc 14 rega.fon rega.inc
+
+rega.com: rega.inc rega.obj rega.lnk
     $(linker) @rega.lnk
 
 rega.lnk: $(__MAKEFILES__)
@@ -146,8 +148,10 @@ rega.lnk: $(__MAKEFILES__)
 
 rvga: .SYMBOLIC rvga.com
 
-rvga.com: bin2inc.exe rvga.obj rvga.lnk
-#    bin2inc 16 rvga.fon rvga.inc
+rvga.inc: bin2inc.exe
+    bin2inc 16 rvga.fon rvga.inc
+
+rvga.com: rvga.inc rvga.obj rvga.lnk
     $(linker) @rvga.lnk
 
 rvga.lnk: $(__MAKEFILES__)
@@ -164,8 +168,10 @@ rvga.lnk: $(__MAKEFILES__)
 
 thaicour: .SYMBOLIC thaicour.com
 
-thaicour.com: bin2inc.exe thaicour.obj thaicour.lnk
-#    bin2inc 16 thaicour.fon thaicour.inc
+thaicour.inc: bin2inc.exe
+    bin2inc 16 thaicour.fon thaicour.inc
+
+thaicour.com: thaicour.inc thaicour.obj thaicour.lnk
     $(linker) @thaicour.lnk
 
 thaicour.lnk: $(__MAKEFILES__)
