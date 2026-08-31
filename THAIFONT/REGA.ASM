@@ -23,14 +23,14 @@ start:
                 xor     bx,bx                   ; Clear bx
                 inc     bl                      ; Load 1 block
                 int     10h                     ; Video display
-                                                ; ah=11h, al=04h
+                                                ; ah=11h, al=01h
                                                 ; Load ROM 8x14 character set
                                                 ; bl=01h
 
                 mov     ax,OFFSET Font          ; Offset to font data
                 mov     bp,ax
                 mov     ax,1100h
-                mov     bh,0Eh                  ; 14 points
+                mov     bh,0eh                  ; 14 points
                 xor     bl,bl                   ; Clear bl, load 0 block
                 mov     cx,80h                  ; Load 128 characters
                 mov     dx,80h                  ; Character offset 80h

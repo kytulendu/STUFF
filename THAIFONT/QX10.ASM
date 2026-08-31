@@ -33,12 +33,12 @@ start:
                 mov     bh,10h                  ; 16 points
                 xor     bl,bl                   ; Clear bl, load 0 block
                 mov     cx,0ffh                 ; Load 256 characters
-                mov     dx,00h                  ; Character offset 80h
+                mov     dx,00h                  ; Character offset 00h
                 int     10h                     ; Video display
                                                 ; ah=11h, al=00h
                                                 ; Load user-specified patterns
                                                 ; bh=10h, bl=00h
-                                                ; cx=80h, dx=80h
+                                                ; cx=ffh, dx=80h
 
                 int     20h                     ; DOS program terminate
 
