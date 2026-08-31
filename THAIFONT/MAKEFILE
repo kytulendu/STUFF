@@ -110,7 +110,7 @@ qx10: .SYMBOLIC qx10.com
 
 qx10.inc: bin2inc2.exe
     echo .
-#    bin2inc2 16 qx10.bin qx10.inc
+#    bin2inc2 16 qx10.fon qx10.inc
 
 qx10.com: qx10.inc qx10.obj qx10.lnk
     $(linker) @qx10.lnk
