@@ -129,7 +129,7 @@ qx10.lnk: $(__MAKEFILES__)
 
 rega: .SYMBOLIC rega.com
 
-rega.inc: bin2inc2.exe
+rega.inc: bin2inc.exe
     echo .
 #    bin2inc 14 rega.fon rega.inc
 
@@ -166,6 +166,23 @@ rvga.lnk: $(__MAKEFILES__)
     @%append $@ FILE    rvga.obj
 
 ##############################################################################
+# tgaplus.com
+##############################################################################
+
+tgaplus: .SYMBOLIC tgaplus.com
+
+tgaplus.com: tgaplus.inc tgaplus.obj tgaplus.lnk
+    $(linker) @tgaplus.lnk
+
+tgaplus.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    tgaplus
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    tgaplus.obj
+
+##############################################################################
 # thaicour.com
 ##############################################################################
 
@@ -187,8 +204,50 @@ thaicour.lnk: $(__MAKEFILES__)
     @%append $@ FILE    thaicour.obj
 
 ##############################################################################
+# tsme.com
+##############################################################################
 
-all: bin2inc rorg lyvga qx10 rega rvga thaicour
+tsme: .SYMBOLIC tsme.com
+
+tsme: bin2inc.exe
+    echo .
+#    bin2inc 14 tsme.fon tsme.inc
+
+tsme.com: tsme.inc tsme.obj tsme.lnk
+    $(linker) @tsme.lnk
+
+tsme.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    tsme
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    tsme.obj
+
+##############################################################################
+# tsmv.com
+##############################################################################
+
+tsmv: .SYMBOLIC tsmv.com
+
+tsmv: bin2inc.exe
+    echo .
+#    bin2inc 16 tsmv.fon tsmv.inc
+
+tsmv.com: tsmv.inc tsmv.obj tsmv.lnk
+    $(linker) @tsmv.lnk
+
+tsmv.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    tsmv
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    tsmv.obj
+
+##############################################################################
+
+all: bin2inc bin2inc2 rorg lyvga qx10 rega rvga tgaplus thaicour tsme tsmv
 
 clean: .SYMBOLIC
     @if exist *.com del *.com
