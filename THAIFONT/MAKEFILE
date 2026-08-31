@@ -86,6 +86,111 @@ rorg.lnk: $(__MAKEFILES__)
     @%append $@ FILE    rorg.obj
 
 ##############################################################################
+# codeku2.com
+##############################################################################
+
+codeku2: .SYMBOLIC codeku2.com
+
+codeku2: bin2inc.exe
+    echo .
+#    bin2inc 14 codeku2.fon codeku2.inc
+
+codeku2.com: codeku2.inc codeku2.obj codeku2.lnk
+    $(linker) @codeku2.lnk
+
+codeku2.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    codeku2
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    codeku2.obj
+
+##############################################################################
+# codeku3.com
+##############################################################################
+
+codeku3: .SYMBOLIC codeku3.com
+
+codeku3: bin2inc.exe
+    echo .
+#    bin2inc 16 codeku3.fon codeku3.inc
+
+codeku3.com: codeku3.inc codeku3.obj codeku3.lnk
+    $(linker) @codeku3.lnk
+
+codeku3.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    codeku3
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    codeku3.obj
+
+##############################################################################
+# codesic.com
+##############################################################################
+
+codesic: .SYMBOLIC codesic.com
+
+codesic: bin2inc.exe
+    echo .
+#    bin2inc 14 codesic.fon codesic.inc
+
+codesic.com: codesic.inc codesic.obj codesic.lnk
+    $(linker) @codesic.lnk
+
+codesic.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    codesic
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    codesic.obj
+
+##############################################################################
+# codesic2.com
+##############################################################################
+
+codesic2: .SYMBOLIC codesic2.com
+
+codesic2: bin2inc.exe
+    echo .
+#    bin2inc 14 codesic2.fon codesic2.inc
+
+codesic2.com: codesic2.inc codesic2.obj codesic2.lnk
+    $(linker) @codesic2.lnk
+
+codesic2.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    codesic2
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    codesic2.obj
+
+##############################################################################
+# codesic3.com
+##############################################################################
+
+codesic3: .SYMBOLIC codesic3.com
+
+codesic3: bin2inc.exe
+    echo .
+#    bin2inc 16 codesic3.fon codesic3.inc
+
+codesic3.com: codesic3.inc codesic3.obj codesic3.lnk
+    $(linker) @codesic3.lnk
+
+codesic3.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    codesic3
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FORMAT  dos com
+    @%append $@ FILE    codesic3.obj
+
+##############################################################################
 # lyvga.com
 ##############################################################################
 
@@ -247,7 +352,7 @@ tsmv.lnk: $(__MAKEFILES__)
 
 ##############################################################################
 
-all: bin2inc bin2inc2 rorg lyvga qx10 rega rvga tgaplus thaicour tsme tsmv
+all: bin2inc bin2inc2 rorg codeku2 codeku3 codesic2 codesic3 lyvga qx10 rega rvga tgaplus thaicour tsme tsmv
 
 clean: .SYMBOLIC
     @if exist *.com del *.com
