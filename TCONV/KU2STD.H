@@ -33,7 +33,7 @@
 
 #define UNDEF 0x020
 
-/* Thai character code conversion table */
+/* Kaset to TIS-620 conversion table */
 const unsigned char ku_to_std[] = {
     UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF,
     UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF,
@@ -46,7 +46,7 @@ const unsigned char ku_to_std[] = {
 };
 
 /** Convert Kaset to TIS-620 Thai character code.
-*  \param[in]  p_kucode         Kaset-CW code character.
+*  \param[in]  p_kucode         Kaset code character.
 *  \return unsigned char        TIS-620 code character. */
 unsigned char ku2std(unsigned char p_kucode)
 {

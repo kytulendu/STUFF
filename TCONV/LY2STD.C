@@ -1,6 +1,6 @@
 /*
 * ============================================================================
-* Convert Loxley to TIS-620 Thai character code.
+* Convert Loxley to TIS-620 CW Thai character code.
 * By Khralkatorrix <https://github.com/kytulendu>.
 *
 * This is free and unencumbered software released into the public domain.
@@ -38,7 +38,7 @@
 
 void usage(void)
 {
-    puts("Convert Loxley to TIS-620 Thai character code.");
+    puts("Convert Loxley to TIS-620 CW Thai character code.");
     puts("By Khralkatorrix.\n\n");
     puts("Usage: LY2STD [input file] [output file]");
 }

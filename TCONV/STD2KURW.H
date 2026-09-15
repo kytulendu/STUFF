@@ -33,7 +33,7 @@
 
 #define UNDEF 0x020
 
-/* Thai character code conversion table */
+/* TIS-620 to Kaset-RW (Kaset Rajavithi Word PC) conversion table */
 const unsigned char std_to_kurw[] = {
     UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, 0x099,
     0x09c, 0x096, 0x09a, 0x098, UNDEF, 0x09e, 0x09f, UNDEF, 0x095, 0x097, 0x09b, 0x09d, UNDEF, UNDEF, UNDEF, UNDEF,

@@ -46,6 +46,8 @@ const unsigned char dtm_to_std[] = {
 };
 
 /** Convert Datamat to TIS-620 Thai character code.
+*   This Thai character code is based on Kaset v2.
+*   https://github.com/kytulendu/libwordthai/blob/master/doc/code_Kaset.md
 *  \param[in]  p_dtmcode        Datamat character code.
 *  \return unsigned char        TIS-620 character code. */
 unsigned char dtm2std(unsigned char p_dtmcode)

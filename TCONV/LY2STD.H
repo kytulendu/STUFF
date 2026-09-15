@@ -1,6 +1,6 @@
 /*
 * ============================================================================
-* Convert Loxley to TIS-620 Thai character code.
+* Convert Loxley to TIS-620 CW Thai character code.
 * By Khralkatorrix <https://github.com/kytulendu>.
 *
 * This is free and unencumbered software released into the public domain.
@@ -33,7 +33,7 @@
 
 #define UNDEF 0x020
 
-/* Computer Loxley to TIS-620 conversion table */
+/* Loxley to TIS-620 CW (TIS-620 CU-Writer) conversion table */
 const unsigned char ly_to_std[] = {
     0x098, 0x099, 0x09a, 0x09b, 0x096, 0x095, 0x093, 0x092, 0x091, 0x090, 0x08f, UNDEF, 0x0fc, 0x0fd, 0x0fe, 0x0ff,
     0x0f0, 0x0f1, 0x0f2, 0x0f3, 0x0f4, 0x0f5, 0x0f6, 0x0f7, 0x0f8, 0x0f9, 0x094, 0x084, 0x085, 0x086, 0x087, 0x0de,
@@ -45,7 +45,7 @@ const unsigned char ly_to_std[] = {
     0x086, 0x087, 0x088, 0x089, 0x08a, 0x08b, 0x08c, 0x08d, 0x08e, 0x08f, 0x0e2, 0x0e3, 0x0e4, UNDEF, UNDEF, UNDEF,
 };
 
-/** Convert Loxley to TIS-620.
+/** Convert Loxley to TIS-620 CW (TIS-620 CU-Writer).
 *  \param[in]  p_lycode         Loxley character code.
 *  \return unsigned char        TIS-620 character code. */
 unsigned char ly2std(unsigned char p_lycode)
