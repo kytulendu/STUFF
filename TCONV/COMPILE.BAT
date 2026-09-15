@@ -6,6 +6,7 @@ wcl kurw2std.c
 wcl ly2std.c
 wcl std2kucw.c
 wcl std2kurw.c
+wcl std2ly.c
 wcl stw2cw.c
 wcl ws2txt.c
-wcl test.c
+rem wcl test.c
