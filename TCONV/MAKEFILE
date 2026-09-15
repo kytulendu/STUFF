@@ -1,0 +1,231 @@
+# Thai Converter makefile.
+
+!ifndef assembler
+!   define assembler wasm
+!endif
+
+!ifndef c_compiler
+#!   define c_compiler wcc386
+!   define c_compiler wcc
+!endif
+
+!ifndef linker
+!   define linker wlink
+!endif
+
+!ifndef asm_options
+!   define asm_options -zq -d1
+!endif
+
+!ifndef c_options
+!   define c_options -zq -d1
+!endif
+
+.extensions:
+.extensions: .com .exe .lnk .obj .c .asm
+
+.asm.obj: .AUTODEPEND
+    $(assembler) $(asm_options) $[*
+
+.c.obj: .AUTODEPEND
+    $(c_compiler) $(c_options) $[*
+
+##############################################################################
+# cuw2cw.exe
+##############################################################################
+
+cuw2cw: .SYMBOLIC cuw2cw.exe
+
+cuw2cw.exe: main.obj cuw2cw.obj cuw2cw.lnk
+    $(linker) @cuw2cw.lnk
+    wstrip cuw2cw.exe
+
+cuw2cw.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    cuw2cw
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,cuw2cw.obj
+
+##############################################################################
+# dtm2std.exe
+##############################################################################
+
+dtm2std: .SYMBOLIC dtm2std.exe
+
+dtm2std.exe: main.obj dtm2std.obj dtm2std.lnk
+    $(linker) @dtm2std.lnk
+    wstrip dtm2std.exe
+
+dtm2std.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    dtm2std
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,dtm2std.obj
+
+##############################################################################
+# ku2std.exe
+##############################################################################
+
+ku2std: .SYMBOLIC ku2std.exe
+
+ku2std.exe: main.obj ku2std.obj ku2std.lnk
+    $(linker) @ku2std.lnk
+    wstrip ku2std.exe
+
+ku2std.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    ku2std
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,ku2std.obj
+
+##############################################################################
+# kucw2std.exe
+##############################################################################
+
+kucw2std: .SYMBOLIC kucw2std.exe
+
+kucw2std.exe: main.obj kucw2std.obj kucw2std.lnk
+    $(linker) @kucw2std.lnk
+    wstrip kucw2std.exe
+
+kucw2std.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    kucw2std
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,kucw2std.obj
+
+##############################################################################
+# kurw2std.exe
+##############################################################################
+
+kurw2std: .SYMBOLIC kurw2std.exe
+
+kurw2std.exe: main.obj kurw2std.obj kurw2std.lnk
+    $(linker) @kurw2std.lnk
+    wstrip kurw2std.exe
+
+kurw2std.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    kurw2std
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,kurw2std.obj
+
+##############################################################################
+# ly2std.exe
+##############################################################################
+
+ly2std: .SYMBOLIC ly2std.exe
+
+ly2std.exe: main.obj ly2std.obj ly2std.lnk
+    $(linker) @ly2std.lnk
+    wstrip ly2std.exe
+
+ly2std.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    ly2std
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,ly2std.obj
+
+##############################################################################
+# std2kucw.exe
+##############################################################################
+
+std2kucw: .SYMBOLIC std2kucw.exe
+
+std2kucw.exe: main.obj std2kucw.obj std2kucw.lnk
+    $(linker) @std2kucw.lnk
+    wstrip std2kucw.exe
+
+std2kucw.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    std2kucw
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,std2kucw.obj
+
+##############################################################################
+# std2kurw.exe
+##############################################################################
+
+std2kurw: .SYMBOLIC std2kurw.exe
+
+std2kurw.exe: main.obj std2kurw.obj std2kurw.lnk
+    $(linker) @std2kurw.lnk
+    wstrip std2kurw.exe
+
+std2kurw.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    std2kurw
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,std2kurw.obj
+
+##############################################################################
+# std2ly.exe
+##############################################################################
+
+std2ly: .SYMBOLIC std2ly.exe
+
+std2ly.exe: main.obj std2ly.obj std2ly.lnk
+    $(linker) @std2ly.lnk
+    wstrip std2ly.exe
+
+std2ly.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    std2ly
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,std2ly.obj
+
+##############################################################################
+# stw2cw.exe
+##############################################################################
+
+stw2cw: .SYMBOLIC stw2cw.exe
+
+stw2cw.exe: main.obj stw2cw.obj stw2cw.lnk
+    $(linker) @stw2cw.lnk
+    wstrip stw2cw.exe
+
+stw2cw.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    stw2cw
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,stw2cw.obj
+
+##############################################################################
+# ws2txt.exe
+##############################################################################
+
+ws2txt: .SYMBOLIC ws2txt.exe
+
+ws2txt.exe: main.obj ws2txt.obj ws2txt.lnk
+    $(linker) @ws2txt.lnk
+    wstrip ws2txt.exe
+
+ws2txt.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    ws2txt
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,ws2txt.obj
+
+##############################################################################
+
+all: cuw2cw dtm2std ku2std kucw2std kurw2std ly2std std2kucw std2kurw std2ly stw2cw ws2txt
+
+clean: .SYMBOLIC
+    @if exist *.com del *.com
+    @if exist *.exe del *.exe
+    @if exist *.lnk del *.lnk
+    @if exist *.obj del *.obj
+    @if exist *.map del *.map
+    @if exist *.err del *.err
+    @if exist *.sym del *.sym
