@@ -19,18 +19,18 @@ start:
                 push    ds
                 pop     es                      ; Make sure ES = DS
 
-                mov     ax,1101h
+                mov     ax,1104h
                 xor     bx,bx                   ; Clear bx
                 inc     bl                      ; Load 1 block
                 int     10h                     ; Video display
-                                                ; ah=11h, al=01h
-                                                ; Load ROM 8x14 character set
+                                                ; ah=11h, al=04h
+                                                ; Load ROM 8x16 character set
                                                 ; bl=01h
 
                 mov     ax,OFFSET Font          ; Offset to font data
                 mov     bp,ax
                 mov     ax,1100h
-                mov     bh,0eh                  ; 14 points
+                mov     bh,10h                  ; 16 points
                 xor     bl,bl                   ; Clear bl, load 0 block
                 mov     cx,0ffh                 ; Load 256 characters
                 mov     dx,00h                  ; Character offset 00h
