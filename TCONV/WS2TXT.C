@@ -32,57 +32,34 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
+
+int process(unsigned char *ibuff, unsigned char *obuff, unsigned int lenght)
+{
+    unsigned char c;
+    unsigned int i;
+    int count = 0;
+
+    for (i = 0; i < lenght; i++)
+    {
+        c = *ibuff;
+
+        /* preserve soft carriage return (0x8d) */
+        if ((c >= 0x80) && (c != 0x8d))
+        {
+            c = c - 0x80;
+        }
+
+        *obuff = c;
+        ibuff++;
+        obuff++;
+        count++;
+    }
+    return count;
+}
 
 void usage(void)
 {
-    puts("Convert WordStar to plain text.");
-    puts("By Khralkatorrix.\n\n");
-    puts("Usage: WS2TXT [input file] [output file]");
-}
-
-int main(int argc, char *argv[])
-{
-    FILE *inFile, *outFile;
-    unsigned char character;
-
-    if (argc != 3)
-    {
-        usage();
-        exit(0);
-    }
-
-    if ((inFile = fopen(argv[1], "rb")) == NULL)
-    {
-        puts("Can't open input file.");
-        exit(0);
-    }
-    if ((outFile = fopen(argv[2], "wb")) == NULL)
-    {
-        puts("Can't open output file.");
-        exit(0);
-    }
-
-    do {
-        character = fgetc(inFile);
-        if (feof(inFile))
-        {
-            break;
-        }
-
-        /* preserve soft carriage return (0x8d) */
-        if ((character >= 0x80) && (character != 0x8d))
-        {
-            character = character - 0x80;
-        }
-
-        /* strip out the high bit */
-        fprintf(outFile, "%c", character);
-    } while (1);
-
-    puts("Finished!");
-
-    fclose(inFile);
-    fclose(outFile);
-    return 0;
+    fprintf(stderr, "Convert WordStar to plain text.\n");
+    fprintf(stderr, "By Khralkatorrix.\n\n");
+    fprintf(stderr, "Usage: ws2txt <input file> <output file>\n");
 }

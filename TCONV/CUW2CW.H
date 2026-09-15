@@ -1,6 +1,6 @@
 /*
 * ============================================================================
-* Convert Computer Union Word to CU-Writer, TIS-620 only.
+* Convert Computer Union Word to CU-Writer (TIS-620).
 * By Khralkatorrix <https://github.com/kytulendu>.
 *
 * This is free and unencumbered software released into the public domain.

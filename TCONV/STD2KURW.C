@@ -32,60 +32,53 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "std2kurw.h"
 
-void usage(void)
+#define __EOF 0x1A /* End of file */
+
+int process(unsigned char *ibuff, unsigned char *obuff, unsigned int lenght)
 {
-    puts("Convert TIS-620 to Kaset-RW (Kaset Rajavithi Word PC) Thai character code.");
-    puts("By Khralkatorrix.\n\n" );
-    puts("Usage: STD2KURW [input file] [output file]");
-}
+    unsigned char c;
+    unsigned int i;
+    int count = 0;
 
-int main(int argc, char *argv[])
-{
-    FILE *inFile, *outFile;
-    unsigned char character;
-
-    if (argc != 3)
+    for (i = 0; i < lenght; i++)
     {
-        usage();
-        exit(0);
-    }
-
-    if ((inFile = fopen(argv[1], "rb")) == NULL)
-    {
-        puts("Can't open input file.");
-        exit(0);
-    }
-    if ((outFile = fopen(argv[2], "wb")) == NULL)
-    {
-        puts("Can't open output file.");
-        exit(0);
-    }
-
-    do {
-        character = fgetc(inFile);
-        if (feof(inFile) || (character == 0x1a))
+        c = *ibuff;
+        /* skip option at the end of file */
+        if (c == __EOF)
         {
             break;
         }
-
-        /* Convert CU-Writer control code to Rajavithi Word PC */
-        if (character == 0x12)              /* double-underline */
-            character = 0x13;
-        else if (character == 0x17)         /* italic */
-            character = 0x15;
-        else if ((character >= 0x1b) && (character <= 0x1e)) /* multi font control code */
+        
+        /* convert CU-Writer control code to Rajavithi Word PC */
+        if (c == 0x12)                      /* double-underline */
+        {
+            c = 0x13;
+        }
+        else if (c == 0x17)                 /* italic */
+        {
+            c = 0x15;
+        }
+        /* strip multi font control code */
+        else if ((c >= 0x1b) && (c <= 0x1e))
+        {
+            ibuff++;
             continue;
+        }
+        
+        *obuff = std2kurw(c);
+        ibuff++;
+        obuff++;
+        count++;
+    }
+    return count;
+}
 
-        fprintf(outFile, "%c", std2kurw(character));
-    } while (1);
-
-    puts("Finished!");
-
-    fclose(inFile);
-    fclose(outFile);
-    return 0;
+void usage(void)
+{
+    fprintf(stderr, "Convert TIS-620 to Kaset-RW (Kaset Rajavithi Word PC) Thai character code.\n");
+    fprintf(stderr, "By Khralkatorrix.\n\n");
+    fprintf(stderr, "Usage: std2kurw <input file> <output file>\n");
 }

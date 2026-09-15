@@ -32,67 +32,58 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "kurw2std.h"
 
-void usage(void)
+#define __EOF 0x1A /* End of file */
+
+int process(unsigned char *ibuff, unsigned char *obuff, unsigned int lenght)
 {
-    puts("Convert Kaset-RW (Kaset Rajavithi Word PC) to TIS-620 Thai character code.");
-    puts("By Khralkatorrix.\n\n");
-    puts("Usage: KURW2STD [input file] [output file]");
-}
+    unsigned char c;
+    unsigned int i;
+    int count = 0;
 
-int main(int argc, char *argv[])
-{
-    FILE *inFile, *outFile;
-    unsigned char character;
-
-    if (argc != 3)
+    for (i = 0; i < lenght; i++)
     {
-        usage();
-        exit(0);
-    }
-
-    if ((inFile = fopen(argv[1], "rb")) == NULL)
-    {
-        puts("Can't open input file.");
-        exit(0);
-    }
-    if ((outFile = fopen(argv[2], "wb")) == NULL)
-    {
-        puts("Can't open output file.");
-        exit(0);
-    }
-
-    do {
-        character = fgetc(inFile);
-        if (feof(inFile) || (character == 0x1a))
+        c = *ibuff;
+        /* skip option at the end of file */
+        if (c == __EOF)
         {
             break;
         }
 
         /* Convert Rajavithi Word PC control code to CU-Writer */
-        if (character == 0x15)              /* italic */
-            character = 0x17;
-        else if ((character == 0x01) ||     /* 12 characters/inch */
-            (character == 0x03) ||          /* condensed */
-            (character == 0x04) ||          /* double strike */
-            (character == 0x0E) ||          /* 10 characters/inch */
-            (character == 0x11) ||          /* DBF record +1 */
-            (character == 0x12) ||          /* DBF record -1 */
-            (character == 0x17) ||          /* 15 characters/inch */
-            (character == 0x18) ||          /* Printing in draft mode */
-            (character == 0x19) ||          /* Printing in NLQ mode */
-            ((character >= 0x1c) && (character <= 0x1f))) /* multi font control code */
+        if (c == 0x15)                      /* italic */
+        {
+            c = 0x17;
+        }
+        /* strip these control code out as it not exist in CU-Writer */
+        else if ((c == 0x01) ||             /* 12 characters/inch */
+            (c == 0x03) ||                  /* condensed */
+            (c == 0x04) ||                  /* double strike */
+            (c == 0x0E) ||                  /* 10 characters/inch */
+            (c == 0x11) ||                  /* DBF record +1 */
+            (c == 0x12) ||                  /* DBF record -1 */
+            (c == 0x17) ||                  /* 15 characters/inch */
+            (c == 0x18) ||                  /* Printing in draft mode */
+            (c == 0x19) ||                  /* Printing in NLQ mode */
+            ((c >= 0x1c) && (c <= 0x1f)))   /* multi font control code */
+        {
+            ibuff++;
             continue;
+        }
 
-        fprintf(outFile, "%c", kurw2std(character));
-    } while (1);
+        *obuff = kurw2std(c);
+        ibuff++;
+        obuff++;
+        count++;
+    }
+    return count;
+}
 
-    puts("Finished!");
-
-    fclose(inFile);
-    fclose(outFile);
-    return 0;
+void usage(void)
+{
+    fprintf(stderr, "Convert Kaset-RW (Kaset Rajavithi Word PC) to TIS-620 Thai character code.\n");
+    fprintf(stderr, "By Khralkatorrix.\n\n");
+    fprintf(stderr, "Usage: kurw2std <input file> <output file>\n");
 }

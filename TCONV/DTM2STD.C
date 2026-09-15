@@ -32,51 +32,29 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "dtm2std.h"
 
-void usage(void)
+int process(unsigned char *ibuff, unsigned char *obuff, unsigned int lenght)
 {
-    puts("Convert Datamat to TIS-620 Thai character code.");
-    puts("By Khralkatorrix.\n\n");
-    puts("Usage: DTM2STD [input file] [output file]");
+    unsigned char c;
+    unsigned int i;
+    int count = 0;
+
+    for (i = 0; i < lenght; i++)
+    {
+        c = *ibuff;
+        *obuff = dtm2std(c);
+        ibuff++;
+        obuff++;
+        count++;
+    }
+    return count;
 }
 
-int main(int argc, char *argv[])
+void usage(void)
 {
-    FILE *inFile, *outFile;
-    unsigned char character;
-
-    if (argc != 3)
-    {
-        usage();
-        exit(0);
-    }
-
-    if ((inFile = fopen(argv[1], "rb")) == NULL)
-    {
-        puts("Can't open input file.");
-        exit(0);
-    }
-    if ((outFile = fopen(argv[2], "wb")) == NULL)
-    {
-        puts("Can't open output file.");
-        exit(0);
-    }
-
-    do {
-        character = fgetc(inFile);
-        if (feof(inFile))
-        {
-            break;
-        }
-        fprintf(outFile, "%c", dtm2std(character));
-    } while (1);
-
-    puts("Finished!");
-
-    fclose(inFile);
-    fclose(outFile);
-    return 0;
+    fprintf(stderr, "Convert Datamat to TIS-620 Thai character code.\n");
+    fprintf(stderr, "By Khralkatorrix.\n\n");
+    fprintf(stderr, "Usage: dtm2std <input file> <output file>\n");
 }

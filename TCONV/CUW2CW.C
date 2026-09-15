@@ -1,6 +1,6 @@
 /*
 * ============================================================================
-* Convert Computer Union Word to CU-Writer, TIS-620 only.
+* Convert Computer Union Word to CU-Writer (TIS-620).
 * By Khralkatorrix <https://github.com/kytulendu>.
 *
 * This is free and unencumbered software released into the public domain.
@@ -32,51 +32,29 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "cuw2cw.h"
 
-void usage(void)
+int process(unsigned char *ibuff, unsigned char *obuff, unsigned int lenght)
 {
-    puts("Convert Computer Union Word to CU-Writer, TIS-620 only.");
-    puts("By Khralkatorrix.\n\n");
-    puts("Usage: CUW2CW [input file] [output file]");
+    unsigned char c;
+    unsigned int i;
+    int count = 0;
+
+    for (i = 0; i < lenght; i++)
+    {
+        c = *ibuff;
+        *obuff = cuw2cw(c);
+        ibuff++;
+        obuff++;
+        count++;
+    }
+    return count;
 }
 
-int main(int argc, char *argv[])
+void usage(void)
 {
-    FILE *inFile, *outFile;
-    unsigned char character;
-
-    if (argc != 3)
-    {
-        usage();
-        exit(0);
-    }
-
-    if ((inFile = fopen(argv[1], "rb")) == NULL)
-    {
-        puts("Can't open input file.");
-        exit(0);
-    }
-    if ((outFile = fopen(argv[2], "wb")) == NULL)
-    {
-        puts("Can't open output file.");
-        exit(0);
-    }
-
-    do {
-        character = fgetc(inFile);
-        if (feof(inFile))
-        {
-            break;
-        }
-        fprintf(outFile, "%c", cuw2cw(character));
-    } while (1);
-
-    puts("Finished!");
-
-    fclose(inFile);
-    fclose(outFile);
-    return 0;
+    fprintf(stderr, "Convert Computer Union Word to CU-Writer (TIS-620).\n");
+    fprintf(stderr, "By Khralkatorrix.\n\n");
+    fprintf(stderr, "Usage: cuw2cw <input file> <output file>\n");
 }
