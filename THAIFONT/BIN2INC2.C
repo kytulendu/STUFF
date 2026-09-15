@@ -32,6 +32,12 @@ void process(const char *height, const char *ifname, const char *ofname)
     int charpos = 0x00;
     unsigned int size;
 
+    if (strcmp(ifname, ofname) == 0)
+    {
+        fprintf(stderr, "cannot use same file name.\n");
+        exit(1);
+    }
+
     ifile = fopen(ifname, "rb");
     if (ifile == NULL)
     {
@@ -126,19 +132,16 @@ void process(const char *height, const char *ifname, const char *ofname)
 
 void usage(void)
 {
-    fprintf(stderr, "usage: bin2inc2 <character height> <input_file> <output_file>\n");
-    exit(1);
+    fprintf(stderr, "Convert a binary file into a assembly source data.\n");
+    fprintf(stderr, "Usage: bin2inc2 <character height> <input_file> <output_file>\n");
 }
 
 int main(int argc, char **argv)
 {
-    while (argc > 4)
-    {
-        usage();
-    }
     if (argc != 4)
     {
         usage();
+        exit(1);
     }
     process(argv[1], argv[2], argv[3]);
     return 0;
