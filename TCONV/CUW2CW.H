@@ -33,7 +33,7 @@
 
 #define UNDEF 0x020
 
-/* Computer Union Word to CU-Writer conversion table */
+/* Computer Union Word to CU-Writer (TIS-620) conversion table */
 const unsigned char cuw_to_cw[] = {
     UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF,
     UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, UNDEF, 0x099, 0x09b, 0x096, 0x08f, 0x090, 0x091, 0x093,
@@ -45,9 +45,9 @@ const unsigned char cuw_to_cw[] = {
     0x0f0, 0x0f1, 0x0f2, 0x0f3, 0x0f4, 0x0f5, 0x0f6, 0x0f7, 0x0f8, 0x0f9, 0x0fb, UNDEF, UNDEF, UNDEF, UNDEF, 0x0ff,
 };
 
-/** Convert Computer Union Word to CU-Writer.
+/** Convert Computer Union Word to CU-Writer (TIS-620).
 *  \param[in]  p_cuwcode        Computer Union character code.
-*  \return unsigned char        CU-Writer character code. */
+*  \return unsigned char        CU-Writer (TIS-620) character code. */
 unsigned char cuw2cw(unsigned char p_cuwcode)
 {
     return ((p_cuwcode >= 0x80) ? cuw_to_cw[p_cuwcode - 0x80] : p_cuwcode);
