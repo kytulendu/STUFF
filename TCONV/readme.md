@@ -5,6 +5,7 @@ Note:  Convert TIS-620 to Kaset will lose some character.
        Option settings at the end of file will be stripped out.
 
     CUW2CW      Computer Union Word to CU-Writer (TIS-620)
+    CW2STW      CU-Writer (TIS-620) to iRC Standard Word
     DTM2STD     Kaset-DTM (Kaset Datamat, based on Kaset v2) to TIS-620
     KU2STD      Kaset to TIS-620
     KUCW2STD    Kaset-CW (Kaset CU-Writer) to TIS-620 CW

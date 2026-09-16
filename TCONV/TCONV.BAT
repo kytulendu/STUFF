@@ -6,6 +6,7 @@ echo       Invalid character will replace with space (20h).
 echo       Option settings at the end of file will be stripped out.
 echo.
 echo CUW2CW      Computer Union Word to CU-Writer (TIS-620)
+echo CW2STW      CU-Writer (TIS-620) to iRC Standard Word
 echo DTM2STD     Kaset-DTM (Kaset Datamat, based on Kaset v2) to TIS-620
 echo KU2STD      Kaset to TIS-620
 echo KUCW2STD    Kaset-CW (Kaset CU-Writer) to TIS-620 CW

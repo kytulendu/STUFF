@@ -48,6 +48,23 @@ cuw2cw.lnk: $(__MAKEFILES__)
     @%append $@ FILE    main.obj,cuw2cw.obj
 
 ##############################################################################
+# cw2stw.exe
+##############################################################################
+
+cw2stw: .SYMBOLIC cw2stw.exe
+
+cw2stw.exe: main.obj cw2stw.obj cw2stw.lnk
+    $(linker) @cw2stw.lnk
+    wstrip cw2stw.exe
+
+cw2stw.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    cw2stw
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    main.obj,cw2stw.obj
+
+##############################################################################
 # dtm2std.exe
 ##############################################################################
 
@@ -236,7 +253,7 @@ ws2txt.lnk: $(__MAKEFILES__)
 
 ##############################################################################
 
-all: cuw2cw dtm2std ku2std kucw2std kurw2std ly2std std2kucw std2kurw std2ly stw2cw thi2cw ws2txt
+all: cuw2cw cw2stw dtm2std ku2std kucw2std kurw2std ly2std std2kucw std2kurw std2ly stw2cw thi2cw ws2txt
 
 clean: .SYMBOLIC
     @if exist *.com del *.com
