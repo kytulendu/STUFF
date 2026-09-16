@@ -15,6 +15,7 @@ echo STD2KUCW    TIS-620 CW to Kaset-CW
 echo STD2KURW    TIS-620 CW to Kaset-RW
 echo STD2LY      TIS-620 CW to Loxley
 echo STW2CW      iRC Standard Word to CU-Writer (TIS-620)
+echo THI2CW      Thai Easy Writer to CU-Writer (TIS-620)
 echo WS2TXT      WordStar to plain text
 echo.
 echo Usage: [Command] [input file] [output file]

@@ -14,4 +14,7 @@ Note:  Convert TIS-620 to Kaset will lose some character.
     STD2KURW    TIS-620 CW to Kaset-RW
     STD2LY      TIS-620 CW to Loxley
     STW2CW      iRC Standard Word to CU-Writer (TIS-620)
+    THI2CW      Thai Easy Writer to CU-Writer (TIS-620)
     WS2TXT      WordStar to plain text
+
+Compile using OpenWatcom.

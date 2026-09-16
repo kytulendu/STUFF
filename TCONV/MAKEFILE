@@ -201,6 +201,23 @@ stw2cw.lnk: $(__MAKEFILES__)
     @%append $@ FILE    main.obj,stw2cw.obj
 
 ##############################################################################
+# thi2cw.exe
+##############################################################################
+
+thi2cw: .SYMBOLIC thi2cw.exe
+
+thi2cw.exe: thi2cw.obj thi2cw.lnk
+    $(linker) @thi2cw.lnk
+    wstrip thi2cw.exe
+
+thi2cw.lnk: $(__MAKEFILES__)
+    @%create $@
+    @%append $@ NAME    thi2cw
+    @%append $@ OPTION  quiet, eliminate, map, show
+    @%append $@ DEBUG   all
+    @%append $@ FILE    thi2cw.obj
+
+##############################################################################
 # ws2txt.exe
 ##############################################################################
 
@@ -219,7 +236,7 @@ ws2txt.lnk: $(__MAKEFILES__)
 
 ##############################################################################
 
-all: cuw2cw dtm2std ku2std kucw2std kurw2std ly2std std2kucw std2kurw std2ly stw2cw ws2txt
+all: cuw2cw dtm2std ku2std kucw2std kurw2std ly2std std2kucw std2kurw std2ly stw2cw thi2cw ws2txt
 
 clean: .SYMBOLIC
     @if exist *.com del *.com
