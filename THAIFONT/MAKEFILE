@@ -352,7 +352,7 @@ tsmv.lnk: $(__MAKEFILES__)
 
 ##############################################################################
 
-all: bin2inc bin2inc2 rorg codeku2 codeku3 codesic2 codesic3 lyvga qx10 rega rvga tgaplus thaicour tsme tsmv
+all: bin2inc bin2inc2 rorg codeku2 codeku3 codesic codesic2 codesic3 lyvga qx10 rega rvga tgaplus thaicour tsme tsmv
 
 clean: .SYMBOLIC
     @if exist *.com del *.com
